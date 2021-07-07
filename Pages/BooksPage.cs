@@ -1,6 +1,5 @@
 ﻿using EscapeFromTarkov.core.driver;
 using OpenQA.Selenium;
-using System;
 
 namespace EscapeFromTarkov.Pages
 {
@@ -10,6 +9,7 @@ namespace EscapeFromTarkov.Pages
         public BooksPage(Application app) : base(app)
         {
             this.app = app;
+            WaitUntilElementIsPresent(By.XPath("//span[contains(text(), 'Книги')]"));
         }
 
         private IWebElement Book(string description) => _driver.FindElement(By.XPath($"//span[@class = 'title'][contains(text(), '{description}')]//ancestor::div[@class = 'tarkov-card']"));

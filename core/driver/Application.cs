@@ -39,7 +39,7 @@ namespace EscapeFromTarkov.core.driver
             options.AddArguments("--disable-gpu");
             options.AddArguments("start-maximized");
             IWebDriver driver = new ChromeDriver(options);
-            Wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30)); //this.Wait
+            Wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
             return driver;
         }
 

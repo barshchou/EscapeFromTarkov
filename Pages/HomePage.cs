@@ -2,7 +2,6 @@
 using EscapeFromTarkov.core.Helpers;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.UI;
 
 namespace EscapeFromTarkov.Pages
 {
@@ -16,9 +15,12 @@ namespace EscapeFromTarkov.Pages
             Application.Driver.Navigate().GoToUrl(BrowserConfig.BaseUrl);
         }
 
+        private IWebElement PreorderButton => _driver.FindElement(By.XPath("//img[@class = 'preorder_button']"));
+        private IWebElement RatingsButton => _driver.FindElement(By.XPath("//a[contains(text(), 'Ratings')]"));
         private IWebElement NewsButton => _driver.FindElement(By.XPath("//a[contains(text(), 'News')]"));
         private IWebElement MerchButton => _driver.FindElement(By.XPath("//a[contains(text(), 'Merch')]"));
         private IWebElement SupportButton => _driver.FindElement(By.XPath("//a[contains(text(), 'Support')]"));
+        private IWebElement WikiButton => _driver.FindElement(By.XPath("//a[contains(text(), 'Wiki')]"));
         private IWebElement MediaButton => _driver.FindElement(By.XPath("//a[contains(text(), 'Media')]")); 
         private IWebElement MediaContentPoster => _driver.FindElement(By.XPath("//ul[@id = 'media-list']//a[1]"));  
         private IWebElement MediaPlayerPlayButton => _driver.FindElement(By.XPath("//div[@class = 'slide']//a"));
@@ -40,10 +42,29 @@ namespace EscapeFromTarkov.Pages
             return new MerchPage(app);
         }
 
+        public RatingsPage OpenRatingsPage()
+        {
+            Click(RatingsButton);
+            return new RatingsPage(app);
+        }
+
         public SupportPage OpenSupportPage()
         {
             Click(SupportButton);
             return new SupportPage(app);
+        }
+
+        public WikiPage OpenWikiPage()
+        {
+            Click(WikiButton);
+            SwitchTab();
+            return new WikiPage(app);
+        }
+
+        public PreorderPage OpenPreorderPage()
+        {
+            Click(PreorderButton);
+            return new PreorderPage(app);
         }
 
         public void SwitchTab(int i = 1)
